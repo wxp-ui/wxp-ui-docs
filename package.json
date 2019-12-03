@@ -1,0 +1,19 @@
+{
+  "name": "wxp-ui-docs",
+  "version": "1.0.0",
+  "description": "wxp-ui 文档",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wxp-ui/wxp-ui-docs.git"
+  },
+  "author": "singletouch",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wxp-ui/wxp-ui-docs/issues"
+  },
+  "homepage": "https://github.com/wxp-ui/wxp-ui-docs#readme"
+}
