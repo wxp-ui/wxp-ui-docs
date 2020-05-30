@@ -14,9 +14,9 @@ jobs:
 deployment:
   website:
     branch: master
-    command: |
-      git config --global user.email "singletouch@163.com"
-      git config --global user.name "singletouch"
-      echo "machine github.com login wxp-ui password $GITHUB_TOKEN" > ~/.netrc
-      cd website && yarn install && CURRENT_BRANCH=master USE_SSH=true npm run publish-gh-pages
+    commands:
+      - git config --global user.email "singletouch@163.com"
+      - git config --global user.name "singletouch"
+      - echo "machine github.com login wxp-ui password $GITHUB_TOKEN" > ~/.netrc
+      - cd website && yarn install && CURRENT_BRANCH=master USE_SSH=true npm run publish-gh-pages
 
