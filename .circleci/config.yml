@@ -10,7 +10,7 @@ jobs:
     branches:
       ignore: gh-pages
     steps:
-      -run: echo "Skipping tests on gh-pages branch"
+      - run: echo "Skipping tests on gh-pages branch"
 deployment:
   website:
     branch: master
