@@ -1,0 +1,13 @@
+machine:
+  node:
+    version: 6.11.2
+  npm:
+    version: 3.10.10
+deployment:
+  website:
+    branch: master
+    commands:
+      - git config --global user.email "singletouch@163.com"
+      - git config --global user.name "singletouch"
+      - echo "machine github.com login singletouch password $GITHUB_TOKEN" > ~/.netrc
+      - cd website && npm install && CURRENT_BRANCH=master USE_SSH=true npm run publish-gh-pages
