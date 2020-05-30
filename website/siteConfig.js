@@ -23,7 +23,7 @@ const users = [
 const siteConfig = {
   title: 'WxP UI', // Title for your website.
   tagline: 'WxP UI 是一款提供高交互小程序插件的合集, 致力于简洁和高可用性的插件实现',
-  url: 'https://github.com/wxp-ui', // Your website URL
+  url: 'https://wxp-ui.github.io', // Your website URL
   baseUrl: '/wxp-ui-docs/', // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
