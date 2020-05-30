@@ -17,5 +17,4 @@ deployment:
     commands:
       - git config --global user.email "singletouch@163.com"
       - git config --global user.name "singletouch"
-      - echo "machine github.com login singletouch password $GITHUB_TOKEN" > ~/.netrc
-      - cd website && npm install && USE_SSH=true npm run publish-gh-pages
+      - cd website && npm install && CURRENT_BRANCH=master USE_SSH=true npm run publish-gh-pages
