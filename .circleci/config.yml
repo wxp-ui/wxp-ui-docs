@@ -1,8 +1,8 @@
 machine:
   node:
-    version: 6.11.2
+    version: 10.16.0
   npm:
-    version: 3.10.10
+    version: 6.13.1
 version: 2
 jobs:
   build:
