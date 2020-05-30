@@ -11,12 +11,7 @@ jobs:
       ignore: gh-pages
     steps:
       - run: echo "Skipping tests on gh-pages branch"
-deployment:
-  website:
-    branch: master
-    commands:
-      - git config --global user.email "singletouch@163.com"
-      - git config --global user.name "singletouch"
-      - echo "machine github.com login wxp-ui password $GITHUB_TOKEN" > ~/.netrc
-      - cd website && yarn install && CURRENT_BRANCH=master USE_SSH=true npm run publish-gh-pages
-
+      - run: git config --global user.email "singletouch@163.com"
+      - run: git config --global user.name "singletouch"
+      - run: echo "machine github.com login wxp-ui password $GITHUB_TOKEN" > ~/.netrc
+      - run: cd website && yarn install && CURRENT_BRANCH=master USE_SSH=true npm run publish-gh-pages
