@@ -13,6 +13,6 @@ jobs:
       - run: echo "Skipping tests on gh-pages branch"
       - run: git config --global user.email "singletouch@163.com"
       - run: git config --global user.name "singletouch"
-      - run: echo "machine github.com login wxp-ui password $GITHUB_TOKEN" > ~/.netrc
+      - run: echo "machine github.com login singletouch password $GITHUB_TOKEN" > ~/.netrc
       - run: ls
       - run: cd website && yarn install && CURRENT_BRANCH=master USE_SSH=true npm run publish-gh-pages
