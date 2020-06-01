@@ -1,13 +1,6 @@
 aliases:
   - &root-yarn |
     yarn install --non-interactive --cache-folder ~/.cache/yarn
-
-  - &root-restore-yarn-cache
-    keys:
-      - root-yarn-{{ .Branch }}-{{ checksum "yarn.lock" }}
-      # Fallback in case checksum fails
-      - root-yarn-{{ .Branch }}-
-
   - &filter-only-master
     branches:
       only:
@@ -24,7 +17,6 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - restore-cache: *root-restore-yarn-cache
       - run: *root-yarn
       - run:
           name: Configure GitHub Bot
@@ -59,7 +51,7 @@ jobs:
                   yarn crowdin-download -l $lang
               done
               # publish
-              GIT_USER=docusaurus-bot USE_SSH=false yarn run publish-gh-pages
+              GIT_USER=singletouch USE_SSH=true yarn run publish-gh-pages
             else
               echo "Skipping deploy."
             fi
