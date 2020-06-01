@@ -31,33 +31,6 @@ defaults: &defaults
 
 version: 2
 jobs:
-  lint-prettier:
-    <<: *defaults
-    steps:
-      - checkout
-      - restore-cache: *root-restore-yarn-cache
-      - run: *root-yarn
-      - save-cache: *root-save-yarn-cache
-      - run:
-          name: Check ESLint
-          command: yarn lint
-      - run:
-          name: Check Prettier
-          command: yarn prettier:diff
-
-  tests:
-    <<: *defaults
-    steps:
-      - checkout
-      - restore-cache: *root-restore-yarn-cache
-      - run: *root-yarn
-      - save-cache: *root-save-yarn-cache
-      - run:
-          name: Run Test Suites
-          command: yarn test
-
-  # The CIRCLE_ variables are defined during the CircleCI build process
-  # https://circleci.com/docs/1.0/environment-variables/
   deploy-website:
     <<: *defaults
     steps:
@@ -106,17 +79,7 @@ jobs:
 # Workflows enables us to run multiple jobs in parallel
 workflows:
   version: 2
-
-  lint-prettier:
-    jobs:
-      - lint-prettier:
-          filters: *filter-ignore-gh-pages
-
   tests-and-deploy:
     jobs:
-      - tests:
-          filters: *filter-ignore-gh-pages
       - deploy-website:
-          requires:
-            - tests
           filters: *filter-only-master
