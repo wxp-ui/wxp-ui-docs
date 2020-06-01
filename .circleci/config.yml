@@ -3,14 +3,13 @@ aliases:
     branches:
       only:
         - master
-
+      ignore:
+        - gh-pages
 version: 2
 jobs:
   deploy-website:
     docker:
       - image: circleci/node:10
-    branches:
-      ignore: gh-pages
     steps:
       - add_ssh_keys:
           fingerprints:
