@@ -16,6 +16,8 @@ jobs:
       - run:
           name: Deploy WxP WebSite
           command: |
+            echo git diff-tree --no-commit-id --name-only -r HEAD
+            echo git diff-tree --no-commit-id --name-only -r HEAD | grep -E "(^docs\/.*)|(docusaurus\.x\/.*)|(website\.x\/.*)"
             if ! git diff-tree --no-commit-id --name-only -r HEAD | grep -E "(^docs\/.*)|(docusaurus\.x\/.*)|(website\.x\/.*)"; then
               echo "Skipping deploy. No relevant v1 website files have changed"
             elif [[ $CIRCLE_PROJECT_USERNAME == "wxp-ui" && -z $CI_PULL_REQUEST && -z $CIRCLE_PR_USERNAME ]]; then
