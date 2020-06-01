@@ -1,18 +1,13 @@
-machine:
-  node:
-    version: 10.16.0
-  npm:
-    version: 6.13.1
-version: 2
+version: 2.1
 jobs:
   build:
+    docker:
+      - image: circleci/node:4.8.2
     machine: true
-    branches:
-      ignore: gh-pages
     steps:
       - run: echo "Skipping tests on gh-pages branch"
       - run: git config --global user.email "singletouch@163.com"
       - run: git config --global user.name "singletouch"
       - run: echo "machine github.com login singletouch password $GITHUB_TOKEN" > ~/.netrc
-      - run: ls
+      - run: checkout
       - run: cd website && yarn install && CURRENT_BRANCH=master USE_SSH=true npm run publish-gh-pages
