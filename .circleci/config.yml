@@ -12,6 +12,9 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "67:30:6b:84:25:d3:68:fc:94:0c:19:6e:56:79:ad:bc"
       - run:
           name: Deploy WxP WebSite
           command: |
