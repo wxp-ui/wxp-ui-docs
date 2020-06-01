@@ -1,4 +1,4 @@
-version: 2.0
+version: 2.1
 jobs:
   deploy-website:
     branches:
@@ -21,7 +21,7 @@ jobs:
             # publish
             CURRENT_BRANCH=master USE_SSH=true npm run publish-gh-pages
 workflows:
-  version: 2.0
+  version: 2.1
   build-deploy:
     jobs:
       - deploy-website
