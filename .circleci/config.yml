@@ -7,7 +7,6 @@ aliases:
 version: 2
 jobs:
   deploy-website:
-    working_directory: ~/docusaurus
     docker:
       - image: circleci/node:10
     steps:
