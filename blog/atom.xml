@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wxp-ui.github.io/blog</id>
-    <title>WxP UI Test haha 0003344 Blog</title>
+    <title>WxP UI Test haha 最新测试 Blog</title>
     <updated>2017-10-24T06:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wxp-ui.github.io/blog"/>
-    <subtitle>The best place to stay up-to-date with the latest WxP UI Test haha 0003344 news and events.</subtitle>
+    <subtitle>The best place to stay up-to-date with the latest WxP UI Test haha 最新测试 news and events.</subtitle>
     <logo>https://wxp-ui.github.io/img/favicon.ico</logo>
     <rights>Copyright © 2020 Your Name or Your Company Name</rights>
     <entry>
