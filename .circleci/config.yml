@@ -13,6 +13,7 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "69:34:e6:3b:8e:7f:c7:34:cc:a3:b2:e7:3a:6b:15:dc"
+      - checkout
       - run:
           name: Deploy WxP WebSite
           command: |
