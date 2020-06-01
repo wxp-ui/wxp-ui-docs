@@ -16,13 +16,19 @@ jobs:
       - run:
           name: Deploy WxP WebSite
           command: |
-            # config user
-            git config --global user.email "singletouch@163.com"
-            git config --global user.name "Website Deployment Script"
-            # install
-            cd website && npm install
-            # publish
-            CURRENT_BRANCH=master USE_SSH=true npm run publish-gh-pages
+            if ! git diff-tree --no-commit-id --name-only -r HEAD | grep -E "(^docs\/.*)|(docusaurus\.x\/.*)|(website\.x\/.*)"; then
+              echo "Skipping deploy. No relevant v1 website files have changed"
+            elif [[ $CIRCLE_PROJECT_USERNAME == "wxp-ui" && -z $CI_PULL_REQUEST && -z $CIRCLE_PR_USERNAME ]]; then
+              # config user
+              git config --global user.email "singletouch@163.com"
+              git config --global user.name "Website Deployment Script"
+              # install
+              cd website && npm install
+              # publish
+              CURRENT_BRANCH=master USE_SSH=true npm run publish-gh-pages
+            else
+              echo "Skipping deploy."
+            fi
 workflows:
   version: 2
   build-deploy:
