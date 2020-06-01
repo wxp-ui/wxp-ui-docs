@@ -1,6 +1,8 @@
-version: 2.1
+version: 2
 jobs:
   deploy-website:
+    branches:
+      only: master
     docker:
       - image: circleci/node:10
     steps:
@@ -18,11 +20,3 @@ jobs:
             cd website && npm install
             # publish
             CURRENT_BRANCH=master USE_SSH=true npm run publish-gh-pages
-workflows:
-  version: 2.1
-  build-deploy:
-    jobs:
-      - deploy-website:
-          filters:
-            branches:
-              only: master
