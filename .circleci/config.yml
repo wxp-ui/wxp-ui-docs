@@ -41,7 +41,10 @@ jobs:
           name: Configure GitHub Bot
           # Do not do this if we don't have the right org (facebook), or if this is just a pull request
           command: |
-            echo "$CIRCLE_PROJECT_USERNAME $CI_PULL_REQUEST $CIRCLE_PR_USERNAME 11111222"
+            echo $CIRCLE_PROJECT_USERNAME
+            echo $CI_PULL_REQUEST
+            echo $CIRCLE_PR_USERNAME
+            echo "11111222"
             if [[ $CIRCLE_PROJECT_USERNAME == "facebook" && -z $CI_PULL_REQUEST && -z $CIRCLE_PR_USERNAME ]]; then
               git config --global user.email "docusaurus-bot@users.noreply.github.com"
               git config --global user.name "Website Deployment Script"
