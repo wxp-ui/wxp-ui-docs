@@ -37,21 +37,7 @@ jobs:
           # Skip the deploy if we don't have the right org (facebook), or if this is just a pull request
           command: |
             echo "Deploying website..."
-            # install Docusaurus and generate file of English strings
-            cd website-1.x && yarn run write-translations
-            # install Crowdin
-            sudo apt-get update
-            sudo apt-get install default-jre rsync
-            wget https://artifacts.crowdin.com/repo/deb/crowdin.deb -O crowdin.deb
-            sudo dpkg -i crowdin.deb
-            sleep 5
-            # upload translation strings and download translations
-            yarn run crowdin-upload
-            # download only enabled languages
-            for lang in fr ko ru ro pt-BR zh-CN
-            do
-                yarn crowdin-download -l $lang
-            done
+            ls
             # publish
             GIT_USER=singletouch USE_SSH=true yarn run publish-gh-pages
 # Workflows enables us to run multiple jobs in parallel
