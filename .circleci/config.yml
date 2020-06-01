@@ -34,6 +34,7 @@ jobs:
             if ! git diff-tree --no-commit-id --name-only -r HEAD | grep -E "(^docs\/.*)|(docusaurus-1\.x\/.*)|(website-1\.x\/.*)"; then
               echo "Skipping deploy. No relevant v1 website files have changed"
             elif [[ $CIRCLE_PROJECT_USERNAME == "wxp-ui" && -z $CI_PULL_REQUEST && -z $CIRCLE_PR_USERNAME ]]; then
+              ls
               echo "Deploying website..."
               # install Docusaurus and generate file of English strings
               cd website-1.x && yarn run write-translations
