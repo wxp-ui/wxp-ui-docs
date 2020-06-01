@@ -16,21 +16,13 @@ jobs:
       - run:
           name: Deploy WxP WebSite
           command: |
-            echo git diff-tree --no-commit-id --name-only -r HEAD
-            echo git diff-tree --no-commit-id --name-only -r HEAD | grep -E "(^docs\/.*)|(docusaurus\.x\/.*)|(website\.x\/.*)"
-            if ! git diff-tree --no-commit-id --name-only -r HEAD | grep -E "(^docs\/.*)|(docusaurus\.x\/.*)|(website\.x\/.*)"; then
-              echo "Skipping deploy. No relevant v1 website files have changed"
-            elif [[ $CIRCLE_PROJECT_USERNAME == "wxp-ui" && -z $CI_PULL_REQUEST && -z $CIRCLE_PR_USERNAME ]]; then
-              # config user
-              git config --global user.email "singletouch@163.com"
-              git config --global user.name "Website Deployment Script"
-              # install
-              cd website && npm install
-              # publish
-              CURRENT_BRANCH=master USE_SSH=true npm run publish-gh-pages
-            else
-              echo "Skipping deploy."
-            fi
+            # config user
+            git config --global user.email "singletouch@163.com"
+            git config --global user.name "Website Deployment Script"
+            # install
+            cd website && npm install
+            # publish
+            CURRENT_BRANCH=master USE_SSH=true CUSTOM_COMMIT_MESSAGE='deploy: build docs[ci skip]' npm run publish-gh-pages
 workflows:
   version: 2
   build-deploy:
