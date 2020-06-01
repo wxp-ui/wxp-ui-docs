@@ -21,7 +21,7 @@ const users = [
 ];
 
 const siteConfig = {
-  title: 'WxP UI Test 1234556688', // Title for your website.
+  title: 'WxP UI Test 3344', // Title for your website.
   tagline: 'WxP UI 是一款提供高交互小程序插件的合集, 致力于简洁和高可用性的插件实现 1212',
   url: 'https://wxp-ui.github.io', // Your website URL
   baseUrl: '/', // Base URL for your project */
