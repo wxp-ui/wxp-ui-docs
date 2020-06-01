@@ -12,22 +12,17 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
-      - add_ssh_keys:
-          fingerprints:
-            - "67:30:6b:84:25:d3:68:fc:94:0c:19:6e:56:79:ad:bc"
       - run:
           name: Deploy WxP WebSite
           command: |
-            ls
-            echo $GITHUB_TOKEN
             # config user
             git config --global user.email "singletouch@163.com"
             git config --global user.name "Website Deployment Script"
-            # echo "machine github.com login singletouch password $GITHUB_TOKEN" > ~/.netrc
+            echo "machine github.com login singletouch password $GITHUB_TOKEN" > ~/.netrc
             # install
             cd website && npm install
             # publish
-            GIT_USER=singletouch CURRENT_BRANCH=master USE_SSH=true npm run publish-gh-pages
+            GIT_USER=singletouch CURRENT_BRANCH=master npm run publish-gh-pages
 
 # Workflows enables us to run multiple jobs in parallel
 workflows:
