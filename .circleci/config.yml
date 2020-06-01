@@ -2,7 +2,8 @@ version: 2.1
 jobs:
   deploy-website:
     branches:
-      only: master
+      ignore:
+        - gh-pages
     docker:
       - image: circleci/node:10
     steps:
