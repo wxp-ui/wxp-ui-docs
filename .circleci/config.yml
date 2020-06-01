@@ -6,41 +6,35 @@ aliases:
       only:
         - master
 
-defaults: &defaults
-  working_directory: ~/docusaurus
-  docker:
-    - image: circleci/node:10
-
 version: 2
 jobs:
   deploy-website:
-    <<: *defaults
+    working_directory: ~/docusaurus
+    docker:
+      - image: circleci/node:10
     steps:
       - checkout
       - run: *root-yarn
       - run:
-          name: Configure GitHub Bot
-          # Do not do this if we don't have the right org (facebook), or if this is just a pull request
-          command: |
-            if [[ $CIRCLE_PROJECT_USERNAME == "wxp-ui" && -z $CI_PULL_REQUEST && -z $CIRCLE_PR_USERNAME ]]; then
-              git config --global user.email "singletouch@163.com"
-              git config --global user.name "Website Deployment Script"
-              echo "machine github.com login singletouch password $DOCUSAURUS_PUBLISH_TOKEN" > ~/.netrc
-            fi
-
-      - run: ls
-      - run: echo $CIRCLE_PROJECT_USERNAME
-      - run: echo $CI_PULL_REQUEST
-      - run: echo $CIRCLE_PR_USERNAME
-      - run:
           name: Deploy v1 Website
           # Skip the deploy if we don't have the right org (facebook), or if this is just a pull request
           command: |
-            echo "Deploying website..."
-            ls
-            cat package.json
-            # publish
-            GIT_USER=singletouch USE_SSH=true yarn run publish-gh-pages
+            #配置 git 用户
+            git config --global user.email "singletouch@163.com"
+            git config --global user.name "Website Deployment Script"
+            echo "machine github.com login singletouch password $GITHUB_TOKEN" > ~/.netrc
+            # 安装 Docusaurus 并生成英文字符串文件
+            cd website && npm install && npm run write-translations && cd ..
+            # 安装 crowdin
+            sudo apt-get install default-jre
+            wget https://artifacts.crowdin.com/repo/deb/crowdin.deb -O crowdin.deb
+            sudo dpkg -i crowdin.deb
+            # 翻译 上传/下载
+            crowdin --config crowdin.yaml upload sources --auto-update -b master
+            crowdin --config crowdin.yaml download -b master
+            # 构建和发布网站
+            cd website && GIT_USER=test-site-bot npm run publish-gh-pages
+
 # Workflows enables us to run multiple jobs in parallel
 workflows:
   version: 2
