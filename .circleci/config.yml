@@ -3,8 +3,6 @@ aliases:
     branches:
       only:
         - master
-      ignore:
-        - gh-pages
 version: 2
 jobs:
   deploy-website:
