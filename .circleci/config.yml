@@ -24,7 +24,7 @@ jobs:
             # install
             cd website && npm install
             # publish
-            CURRENT_BRANCH=master USE_SSH=true npm run publish-gh-pages
+            CURRENT_BRANCH=master npm run publish-gh-pages
 
 # Workflows enables us to run multiple jobs in parallel
 workflows:
