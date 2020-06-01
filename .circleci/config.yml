@@ -9,6 +9,8 @@ jobs:
   deploy-website:
     docker:
       - image: circleci/node:10
+    branches:
+      ignore: gh-pages
     steps:
       - add_ssh_keys:
           fingerprints:
@@ -30,7 +32,7 @@ jobs:
 # Workflows enables us to run multiple jobs in parallel
 workflows:
   version: 2
-  tests-and-deploy:
+  build-and-deploy:
     jobs:
       - deploy-website:
           filters: *filter-only-master
