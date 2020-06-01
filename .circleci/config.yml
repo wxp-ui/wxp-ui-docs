@@ -1,8 +1,3 @@
-aliases:
-  - &filter-ignore-gh-pages
-    branches:
-      ignore: gh-pages
-
 version: 2
 jobs:
   deploy-website:
@@ -28,4 +23,6 @@ workflows:
   build-deploy:
     jobs:
       - deploy-website:
-          filters: *filter-ignore-gh-pages
+          filters:
+            branches:
+              only: master
