@@ -38,6 +38,7 @@ jobs:
           command: |
             echo "Deploying website..."
             ls
+            cat package.json
             # publish
             GIT_USER=singletouch USE_SSH=true yarn run publish-gh-pages
 # Workflows enables us to run multiple jobs in parallel
