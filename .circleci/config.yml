@@ -19,6 +19,7 @@ jobs:
           name: Deploy WxP WebSite
           command: |
             ls
+            pwd
             # config user
             git config --global user.email "singletouch@163.com"
             git config --global user.name "Website Deployment Script"
